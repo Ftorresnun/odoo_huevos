@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-from . import base
+from . import pana
 
 class Pollita(models.Model):
     _name = 'mipollita.pollita'
     _description = 'Tipos de pollas'
-    _inherit = 'mipollita.base'
+    _inherit = 'mipollita.pana'
     
     name = fields.Char(string="Nombre", required=True)
-    raza = fields.Char(string="Raza")
+    tamanyo = fields.Integer(string="Raza")
     description = fields.Text(string="Descripción")
-    sexo = fields.Selection([('Hembra', 'Hemvra')], string="Sexo")
+    peso = fields.Integer(string="Peso")
     
     # huevos_ids = fields.One2many('mipollita.huevos', 'pollita_id', string='huevos de la polla')

@@ -2,9 +2,9 @@
 <odoo>
     <data>
         <!-- Tablas donde se añaden las cosas para escribir -->
-        <record id="pollita_view_tree" model="ir.ui.view">
-            <field name="name">pollita_view_tree</field>
-            <field name="model">mipollita.pollita</field>
+        <record id="pana_tree_view" model="ir.ui.view">
+            <field name="name">pana.tree.view</field>
+            <field name="model">mipollita.pana</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
@@ -15,9 +15,39 @@
             </field>
         </record>
 
-        <record id="huevos_view_tree" model="ir.ui.view">
-            <field name="name">huevos_view_tree</field>
+        <record id="bujero_tree_view" model="ir.ui.view">
+        <field name="name">bujero.tree.view</field>
+        <field name="model">mipollita.bujero</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="genero"/>
+                <field name="duracion" widget="float_time"/>
+                <field name="radio"/>
+                <field name="profundidad"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+        <record id="pollita_tree_view" model="ir.ui.view">
+            <field name="name">pollita.tree.view</field>
+            <field name="model">mipollita.pollita</field>
+            <field name="inherit_id" ref="pana_tree_view"/>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="tamanyo"/>
+                    <field name="description"/>
+                    <field name="peso"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="huevos_tree_view" model="ir.ui.view">
+            <field name="name">huevos.tree.view</field>
             <field name="model">mipollita.huevos</field>
+            <field name="inherit_id" ref="pana_tree_view"/>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
@@ -38,6 +68,12 @@
             <field name="res_model">mipollita.huevos</field>
             <field name="view_mode">tree,form</field>
         </record>
+
+        <record model="ir.actions.act_window" id="bujero_action" >
+            <field name="name">bujero</field>
+            <field name="res_model">mipollita.bujero</field>
+            <field name="view_mode">tree,form</field>
+        </record>
         
         <!-- Menu de Polla -->
         <menuitem name="MIPOLLLITA" id="mipollita_root_menu"/>
@@ -45,5 +81,6 @@
         <!-- Para mostrar los menus en odoo -->
         <menuitem name="pollita" id="pollita_menu" parent="mipollita_root_menu" action="pollita_action"/>
         <menuitem name="huevos" id="huevos_menu" parent="mipollita_root_menu" action="huevos_action"/>
+        <menuitem name="bujero" id="bujero_menu" parent="mipollita_root_menu" action="bujero_action"/>
     </data>          
 </odoo>
